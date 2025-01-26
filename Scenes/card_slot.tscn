@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5u0mlu33eybt"]
 
-[ext_resource type="Script" path="res://card_slot.gd" id="1_00odk"]
-[ext_resource type="Texture2D" uid="uid://ctuoqoaw5t4ws" path="res://Playing Cards Pixelart Asset Pack/Sprites/CardSlot.png" id="1_mnbxc"]
+[ext_resource type="Script" path="res://Scripts/card_slot.gd" id="1_00odk"]
+[ext_resource type="Texture2D" uid="uid://ctuoqoaw5t4ws" path="res://Assets/Playing Cards Pixelart Asset Pack/Sprites/CardSlot.png" id="1_mnbxc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_adtsd"]
 size = Vector2(179, 264)
