@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/InputManager.gd" id="6_2uls7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ia8w"]
-size = Vector2(38, 64)
+size = Vector2(157, 262)
 
 [node name="Main" type="Node2D"]
 
@@ -25,13 +25,28 @@ script = ExtResource("3_2to2y")
 position = Vector2(150, 890)
 script = ExtResource("4_ud3aa")
 
-[node name="DeskSprite" type="Sprite2D" parent="Deck"]
+[node name="DeckSprite" type="Sprite2D" parent="Deck"]
+z_index = -2
+scale = Vector2(4, 4)
 texture = ExtResource("4_4kvuh")
 
 [node name="Area2D" type="Area2D" parent="Deck"]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D"]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_5ia8w")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Deck"]
+modulate = Color(0, 0, 0, 1)
+z_index = -2
+offset_left = -9.0
+offset_top = -28.0
+offset_right = 31.0
+offset_bottom = 12.0
+scale = Vector2(2, 2)
+text = "0"
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("6_2uls7")

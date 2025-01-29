@@ -25,7 +25,7 @@ script = ExtResource("3_2to2y")
 position = Vector2(150, 890)
 script = ExtResource("4_ud3aa")
 
-[node name="DeskSprite" type="Sprite2D" parent="Deck"]
+[node name="DeckSprite" type="Sprite2D" parent="Deck"]
 z_index = -2
 scale = Vector2(4, 4)
 texture = ExtResource("4_4kvuh")
