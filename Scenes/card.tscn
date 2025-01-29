@@ -117,7 +117,7 @@ _data = {
 }
 
 [node name="Card" type="Node2D"]
-position = Vector2(150, 890)
+position = Vector2(700, 540)
 script = ExtResource("1_cnn6g")
 
 [node name="CardBackImage" type="Sprite2D" parent="."]

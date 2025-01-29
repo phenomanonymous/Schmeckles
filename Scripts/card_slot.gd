@@ -1,6 +1,7 @@
 extends Node2D
 
-var card_in_slot = false
+#var card_in_slot = false
+var card_in_slot = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

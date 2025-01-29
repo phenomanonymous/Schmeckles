@@ -4,6 +4,9 @@ signal hovered
 signal hovered_off
 
 var hand_position
+var card_slot_card_is_in
+var card_value
+var card_suit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
