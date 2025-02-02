@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv28i1cq6mco7"]
+[gd_scene load_steps=10 format=3 uid="uid://cv28i1cq6mco7"]
 
 [ext_resource type="Script" path="res://Scripts/CardManager.gd" id="1_jjnuq"]
 [ext_resource type="PackedScene" uid="uid://c5u0mlu33eybt" path="res://Scenes/card_slot.tscn" id="2_le537"]
 [ext_resource type="Script" path="res://Scripts/PlayerHand.gd" id="3_2to2y"]
 [ext_resource type="Texture2D" uid="uid://d0m8x2qs28fxc" path="res://Assets/Playing Cards Pixelart Asset Pack/Sprites/Card Back 2.png" id="4_4kvuh"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="4_ud3aa"]
-[ext_resource type="Script" path="res://Scenes/InputManager.gd" id="6_2uls7"]
+[ext_resource type="Script" path="res://Scripts/OpponentHand.gd" id="4_y0m71"]
+[ext_resource type="Script" path="res://Scripts/InputManager.gd" id="6_2uls7"]
+[ext_resource type="Script" path="res://Scripts/BattleManager.gd" id="8_27pvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ia8w"]
 size = Vector2(157, 262)
@@ -20,6 +22,9 @@ position = Vector2(1200, 540)
 
 [node name="PlayerHand" type="Node2D" parent="."]
 script = ExtResource("3_2to2y")
+
+[node name="OpponentHand" type="Node2D" parent="."]
+script = ExtResource("4_y0m71")
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(700, 540)
@@ -50,3 +55,20 @@ text = "0"
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("6_2uls7")
+
+[node name="BattleManager" type="Node" parent="."]
+script = ExtResource("8_27pvd")
+
+[node name="BattleTimer" type="Timer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 420.0
+offset_top = 501.0
+offset_right = 570.0
+offset_bottom = 595.0
+text = "???"
+
+[connection signal="game_over" from="CardManager" to="BattleManager" method="_on_card_manager_game_over"]
+[connection signal="player_turn_ended" from="CardManager" to="BattleManager" method="_on_card_manager_player_turn_ended"]
+[connection signal="player_turn_ended" from="Deck" to="BattleManager" method="_on_deck_player_turn_ended"]
+[connection signal="player_turn_ended" from="InputManager" to="BattleManager" method="_on_input_manager_player_turn_ended"]

@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://de8p8h8v70li4"]
+
+[ext_resource type="Script" path="res://Scripts/OpponentCard.gd" id="1_ma4op"]
+[ext_resource type="Texture2D" uid="uid://d0m8x2qs28fxc" path="res://Assets/Playing Cards Pixelart Asset Pack/Sprites/Card Back 2.png" id="2_aftqh"]
+[ext_resource type="Texture2D" uid="uid://bhstt4ll51dl5" path="res://Assets/Playing Cards Pixelart Asset Pack/Sprites/Spades 1.png" id="3_gf7vl"]
+
+[sub_resource type="Animation" id="Animation_0ef67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardImage:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardBackImage:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CardBackImage:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vc2ug"]
+resource_name = "card_flip"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(0.4, 4), Vector2(4, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardImage:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardBackImage:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(0.4, 4), Vector2(4, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CardBackImage:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, -1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vw1j"]
+_data = {
+"RESET": SubResource("Animation_0ef67"),
+"card_flip": SubResource("Animation_vc2ug")
+}
+
+[node name="Card" type="Node2D"]
+position = Vector2(700, 540)
+script = ExtResource("1_ma4op")
+
+[node name="CardBackImage" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_aftqh")
+
+[node name="CardImage" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(4, 4)
+texture = ExtResource("3_gf7vl")
+
+[node name="Value" type="RichTextLabel" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = -65.0
+offset_right = -25.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+text = "0"
+
+[node name="Suit" type="RichTextLabel" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 35.0
+offset_right = 75.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+text = "0"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7vw1j")
+}

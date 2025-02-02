@@ -1,5 +1,8 @@
 extends Node2D
 
+signal player_turn_ended
+signal game_over
+
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_CARD_SLOT = 2
 const DEFAULT_CARD_MOVE_SPEED = 0.1
@@ -58,6 +61,14 @@ func finish_drag():
 		#card_slot_found.card_in_slot = true
 		#card_slot_found.card_in_slot = card_being_dragged
 		card_slot_found.card_in_slot.append(card_being_dragged)
+		
+		for card in card_slot_found.card_in_slot:
+			print(card.card_value + card.card_suit + ":" + str(card.z_index))
+			
+		if player_hand_reference.player_hand.size() == 0:
+			game_over.emit()
+		else:
+			player_turn_ended.emit()
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
 	card_being_dragged = null

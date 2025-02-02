@@ -2,6 +2,7 @@ extends Node2D
 
 signal left_mouse_button_clicked
 signal left_mouse_button_released
+signal player_turn_ended
 
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_DECK = 4
@@ -37,3 +38,4 @@ func raycast_at_cursor():
 		elif result_collision_mask == COLLISION_MASK_DECK:
 			# Deck clicked
 			deck_reference.draw_card()
+			player_turn_ended.emit()
