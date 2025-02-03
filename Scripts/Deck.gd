@@ -2,7 +2,7 @@ extends Node2D
 
 signal player_turn_ended
 
-const PLAYER_CARD_SCENE_PATH = "res://Scenes/card.tscn"
+const PLAYER_CARD_SCENE_PATH = "res://Scenes/Card.tscn"
 const OPPONENT_CARD_SCENE_PATH = "res://Scenes/OpponentCard.tscn"
 const CARD_DRAW_SPEED = 0.5
 const STARTING_HAND_SIZE = 7

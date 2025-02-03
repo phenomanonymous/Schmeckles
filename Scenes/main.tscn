@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cv28i1cq6mco7"]
 
 [ext_resource type="Script" path="res://Scripts/CardManager.gd" id="1_jjnuq"]
-[ext_resource type="PackedScene" uid="uid://c5u0mlu33eybt" path="res://Scenes/card_slot.tscn" id="2_le537"]
+[ext_resource type="PackedScene" uid="uid://c5u0mlu33eybt" path="res://Scenes/CardSlot.tscn" id="2_le537"]
 [ext_resource type="Script" path="res://Scripts/PlayerHand.gd" id="3_2to2y"]
 [ext_resource type="Texture2D" uid="uid://d0m8x2qs28fxc" path="res://Assets/Playing Cards Pixelart Asset Pack/Sprites/Card Back 2.png" id="4_4kvuh"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="4_ud3aa"]
