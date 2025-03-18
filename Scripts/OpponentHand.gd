@@ -15,6 +15,8 @@ func _ready():
 
 func add_card_to_hand(card, speed):
 	if card not in opponent_hand:
+		card.SuitLabel.text = card.card_suit
+		card.ValueLabel.text = card.card_value
 		opponent_hand.insert(0, card)
 		update_hand_positions(speed)
 	else:

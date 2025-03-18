@@ -47,38 +47,54 @@ func opponent_turn():
 	else:
 		end_opponent_turn()
 
+func print_all_properties(input_node):
+	print ("\nNode Property List for node: ", input_node.name)
+	var property_list = input_node.get_property_list()
+	for prop in property_list:
+		print (prop.name, get(prop.name))
+	print("\n")
+
 func choose_and_play_card():
-	# Decide which card to play
-	#if opponent_hand.size() == 0:
-		#end_opponent_turn()
-		#return
-	
 	var card_to_play
+	var reason
+	var value_dict = {'1':'Ace', '2':'Two', '3':'Three', '4':'Four', '5':'Five', '6':'Six', '7':'Seven', '8':'Eight', '9':'Nine', '10':'Ten', '11':'Jack', '12':'Queen', '13':'King'}
+	
+	# use some kind of priority system. decide the priority of cards based on how much power/playability they may have
 	
 	# discard pile is empty -- start of game, or potential special case later on?
 	if discard_pile.card_in_slot.size() == 0:
 	#if discard_pile.card_in_slot:
 		card_to_play = opponent_hand[0]
-		print("discard pile is empty, playing any card")
+		reason = "discard pile is empty, playing any card"
 	else:
 		var top_card = discard_pile.card_in_slot[-1]
 		for card in opponent_hand:
-			#var results = validate_card_move(card, discard_pile)
-			if card.card_suit == top_card.card_suit:
+			var results = global_scripts.validate_card_move(card, discard_pile)
+			if results[1]:
 				card_to_play = card
-				print("suit match " + card.name)
-			elif card.card_value == top_card.card_value:
-				card_to_play = card
-				print("value match " + card.name)
+				reason = results[2]
+			##print(results)
+			##card.SuitLabel.text = str(results[1])
+			##print_all_properties(card)
+			#if card.card_suit == top_card.card_suit:
+				#card_to_play = card
+				##print("suit match " + card.name)
+			#elif card.card_value == top_card.card_value:
+				#card_to_play = card
+				##print("value match " + card.name)
 		if card_to_play == null:
 			print("no match")
 			$"../Deck".draw_card("opponent")
+			# Say the played card in speech bubble
+			$"../Ace/SpeechBubble".text = "[right]Guess I'll draw...[/right]"
 			return
+	
+	# Say the played card in speech bubble
+	$"../Ace/SpeechBubble".text = "[right]" + value_dict[card_to_play.card_value] + " of " + card_to_play.card_suit + "[/right]"
+	$"../Ace/ValidationLabel".text = reason
 	
 	card_to_play.z_index = -1
 	
-	# Say the played card in speech bubble
-	$"../Ace/SpeechBubble".text = "[right]" + str(card_to_play.card_value) + " of " + str(card_to_play.card_suit) + "[/right]"
 	
 	# Play the card decided above
 	if discard_pile.card_in_slot:
@@ -89,8 +105,8 @@ func choose_and_play_card():
 	card_to_play.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)
 	discard_pile.card_in_slot.append(card_to_play)
 	
-	for card in discard_pile.card_in_slot:
-		print(card.card_value + card.card_suit + ":" + str(card.z_index))
+	#for card in discard_pile.card_in_slot:
+		#print(card.card_value + card.card_suit + ":" + str(card.z_index))
 	
 	# Animate card into position
 	var tween = get_tree().create_tween()

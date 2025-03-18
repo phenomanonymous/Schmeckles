@@ -82,6 +82,12 @@ offset_right = -172.0
 offset_bottom = 144.0
 bbcode_enabled = true
 
+[node name="ValidationLabel" type="RichTextLabel" parent="Ace"]
+offset_left = -514.0
+offset_top = 396.0
+offset_right = 33.0
+offset_bottom = 548.0
+
 [connection signal="game_over" from="CardManager" to="BattleManager" method="_on_card_manager_game_over"]
 [connection signal="player_turn_ended" from="CardManager" to="BattleManager" method="_on_card_manager_player_turn_ended"]
 [connection signal="player_turn_ended" from="Deck" to="BattleManager" method="_on_deck_player_turn_ended"]
