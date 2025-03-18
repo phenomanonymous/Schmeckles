@@ -54,9 +54,9 @@ func _process(delta):
 	time += delta
 	for i in range(player_hand.size()):
 		var c = player_hand[i]
-		print(c)
 		var val: float = sin(i + (time * time_multiplier))
-		print(val)
 		c.position.y += val * sine_offset_mult
-		print(c.position)
+		#print(c)
+		#print(val)
+		#print(c.position)
 	pass

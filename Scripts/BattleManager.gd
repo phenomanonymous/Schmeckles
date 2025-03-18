@@ -18,7 +18,7 @@ func _ready() -> void:
 	opponent_turn()
 
 func _on_card_manager_game_over() -> void:
-	$"../RichTextLabel".text = "Player wins!"
+	$"../TurnLabel".text = "Player wins!"
 	end_game()
 
 #func _on_deck_player_turn_ended() -> void:
@@ -34,7 +34,7 @@ func _on_card_manager_player_turn_ended() -> void:
 	#opponent_turn()
 
 func opponent_turn():
-	$"../RichTextLabel".text = "Opponent's turn"
+	$"../TurnLabel".text = "Opponent's turn"
 	# Wait 1 second
 	battle_timer.start()
 	await battle_timer.timeout
@@ -42,7 +42,7 @@ func opponent_turn():
 	choose_and_play_card()
 	
 	if opponent_hand.size() == 0:
-		$"../RichTextLabel".text = "Ace wins!"
+		$"../TurnLabel".text = "Ace wins!"
 		end_game()
 	else:
 		end_opponent_turn()
@@ -77,6 +77,9 @@ func choose_and_play_card():
 	
 	card_to_play.z_index = -1
 	
+	# Say the played card in speech bubble
+	$"../Ace/SpeechBubble".text = "[right]" + str(card_to_play.card_value) + " of " + str(card_to_play.card_suit) + "[/right]"
+	
 	# Play the card decided above
 	if discard_pile.card_in_slot:
 		#print(card_slot_found.card_in_slot)
@@ -100,7 +103,7 @@ func choose_and_play_card():
 func end_opponent_turn():
 	# End turn
 	# Reset player deck draw
-	$"../RichTextLabel".text = "Player's turn"
+	$"../TurnLabel".text = "Player's turn"
 	pass
 
 func end_game():

@@ -28,6 +28,7 @@ func _ready():
 		for drawer in ["player", "opponent"]:
 		#for drawer in ["player"]:
 			draw_card(drawer)
+			#await get_tree().create_timer(0.1).timeout # this is a potential race condition as everything else is starting up as well
 			#drawn_card_this_turn = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
