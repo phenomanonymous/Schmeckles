@@ -14,6 +14,8 @@ func _ready() -> void:
 	battle_timer = $"../BattleTimer"
 	battle_timer.one_shot = true
 	battle_timer.wait_time = 1.0
+	
+	opponent_turn()
 
 func _on_card_manager_game_over() -> void:
 	$"../RichTextLabel".text = "Player wins!"
@@ -51,18 +53,27 @@ func choose_and_play_card():
 		#end_opponent_turn()
 		#return
 	
-	var top_card = $"../CardSlot".card_in_slot[-1]
 	var card_to_play
-	for card in opponent_hand:
-		if card.card_suit == top_card.card_suit:
-			card_to_play = card
-			#print("suit match " + card.name)
-		elif card.card_value == top_card.card_value:
-			card_to_play = card
-			#print("value match " + card.name)
-	if card_to_play == null:
-		$"../Deck".draw_card("opponent")
-		return
+	
+	# discard pile is empty -- start of game, or potential special case later on?
+	if discard_pile.card_in_slot.size() == 0:
+	#if discard_pile.card_in_slot:
+		card_to_play = opponent_hand[0]
+		print("discard pile is empty, playing any card")
+	else:
+		var top_card = discard_pile.card_in_slot[-1]
+		for card in opponent_hand:
+			var results = validate_card_move(card, discard_pile)
+			if card.card_suit == top_card.card_suit:
+				card_to_play = card
+				print("suit match " + card.name)
+			elif card.card_value == top_card.card_value:
+				card_to_play = card
+				print("value match " + card.name)
+		if card_to_play == null:
+			print("no match")
+			$"../Deck".draw_card("opponent")
+			return
 	
 	card_to_play.z_index = -1
 	
