@@ -63,7 +63,7 @@ func choose_and_play_card():
 	else:
 		var top_card = discard_pile.card_in_slot[-1]
 		for card in opponent_hand:
-			var results = validate_card_move(card, discard_pile)
+			#var results = validate_card_move(card, discard_pile)
 			if card.card_suit == top_card.card_suit:
 				card_to_play = card
 				print("suit match " + card.name)
