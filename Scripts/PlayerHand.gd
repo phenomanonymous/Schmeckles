@@ -8,6 +8,13 @@ const DEFAULT_CARD_MOVE_SPEED = 0.1
 var player_hand = []
 var center_screen_x
 
+############################################
+##### borrowed from godot_ui_components repo
+@export var time_multiplier: float = 2.0
+var time: float = 0.0
+var sine_offset_mult: float = 0.1
+############################################
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	center_screen_x = get_viewport().size.x / 2
@@ -43,4 +50,13 @@ func remove_card_from_hand(card):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Idle animation of card y positions to be more visually interesting
+	time += delta
+	for i in range(player_hand.size()):
+		var c = player_hand[i]
+		print(c)
+		var val: float = sin(i + (time * time_multiplier))
+		print(val)
+		c.position.y += val * sine_offset_mult
+		print(c.position)
 	pass
