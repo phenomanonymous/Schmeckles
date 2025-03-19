@@ -62,6 +62,8 @@ func finish_drag():
 		#card_slot_found.card_in_slot = card_being_dragged
 		card_slot_found.card_in_slot.append(card_being_dragged)
 		
+		$"../PlayCardSound".play()
+		
 		#for card in card_slot_found.card_in_slot:
 			#print(card.card_value + card.card_suit + ":" + str(card.z_index))
 			

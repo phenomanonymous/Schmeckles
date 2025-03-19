@@ -49,8 +49,9 @@ static func validate_card_move(card_being_dragged, card_slot_found):
 		if top_discard.card_value == "3":
 			# Three's a crowd
 			if (card_slot_found.card_in_slot.size() >= 2 and top_discard.card_value == "3" and card_slot_found.card_in_slot[-2].card_value == "3"):
-				valid_move = false
-				reason = "Two's company, three's a crowd. But THREE threes? That's like putting a hat on a hat."
+				if card_being_dragged.card_value == "3":
+					valid_move = false
+					reason = "Two's company, three's a crowd. But THREE threes? That's like putting a hat on a hat."
 		# Top Four
 		if top_discard.card_value == "4":
 			pass
